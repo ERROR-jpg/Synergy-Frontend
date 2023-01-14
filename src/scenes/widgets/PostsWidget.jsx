@@ -9,7 +9,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
-    const response = await fetch("https://synergy-api.onrender.com/posts", {
+    const response = await fetch("https://synergy-api-5mej.onrender.com/posts", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -19,7 +19,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   const getUserPosts = async () => {
     const response = await fetch(
-      `https://synergy-api.onrender.com/posts/${userId}/posts`,
+      `https://synergy-api-5mej.onrender.com/posts/${userId}/posts`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

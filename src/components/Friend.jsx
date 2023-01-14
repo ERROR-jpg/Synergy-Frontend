@@ -23,7 +23,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     const response = await fetch(
-      `https://synergy-api.onrender.com/users/${_id}/${friendId}`,
+      `https://synergy-api-5mej.onrender.com/users/${_id}/${friendId}`,
       {
         method: "PATCH",
         headers: {

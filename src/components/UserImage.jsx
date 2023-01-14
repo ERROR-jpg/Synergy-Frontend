@@ -8,7 +8,7 @@ const UserImage = ({ image, size = "60px" }) => {
         width={size}
         height={size}
         alt="user"
-        src={`https://synergy-api.onrender.com/assets/${image}`}
+        src={`https://synergy-api-5mej.onrender.com/assets/${image}`}
       />
     </Box>
   );
