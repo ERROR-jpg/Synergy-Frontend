@@ -22,7 +22,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const main = palette.neutral.main;
 
   const getUser = async () => {
-    const response = await fetch(`https://synergy-api-5mej.onrender.com/users/${userId}`, {
+    const response = await fetch(`http://localhost:3001/users/${userId}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -57,6 +57,7 @@ const UserWidget = ({ userId, picturePath }) => {
         onClick={() => navigate(`/profile/${userId}`)}
       >
         <FlexBetween gap="1rem">
+       
           <UserImage image={picturePath} />
           <Box>
             <Typography

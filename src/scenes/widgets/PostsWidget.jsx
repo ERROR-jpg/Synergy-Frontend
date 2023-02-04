@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 import PostWidget from "./PostWidget";
 
-const PostsWidget = ({ userId, isProfile = false }) => {
+const PostsWidget = ({ userId, isProfile  }) => {
+
+  console.log("PostsWidgit")
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const token = useSelector((state) => state.token);
-
+  console.log(posts)
   const getPosts = async () => {
-    const response = await fetch("https://synergy-api-5mej.onrender.com/posts", {
+    
+    const response = await fetch("http://localhost:3001/posts", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -19,14 +22,16 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   const getUserPosts = async () => {
     const response = await fetch(
-      `https://synergy-api-5mej.onrender.com/posts/${userId}/posts`,
+      `http://localhost:3001/posts/${userId}/posts`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       }
     );
     const data = await response.json();
+    
     dispatch(setPosts({ posts: data }));
+    
   };
 
   useEffect(() => {
@@ -39,7 +44,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   return (
     <>
-      {posts.map(
+      {posts?.map(
         ({
           _id,
           userId,
@@ -47,10 +52,11 @@ const PostsWidget = ({ userId, isProfile = false }) => {
           lastName,
           description,
           location,
-          picturePath,
+          imageUrl,
           userPicturePath,
           likes,
           comments,
+          userimageUrl
         }) => (
           <PostWidget
             key={_id}
@@ -59,11 +65,12 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             name={`${firstName} ${lastName}`}
             description={description}
             location={location}
-            picturePath={picturePath}
-            userPicturePath={userPicturePath}
+            picturePath={imageUrl}
+            userPicturePath={userimageUrl}
             likes={likes}
             comments={comments}
           />
+         
         )
       )}
     </>
